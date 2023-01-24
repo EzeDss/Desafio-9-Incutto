@@ -4,8 +4,6 @@ const divProducts = document.getElementById("productosPrincipal");
 const tableProducts = document.getElementById("productosCuerpo");
 
 function actualizarProducto(table, arrayProductos) {
-  document.getElementById("noproductos").style.display = "none";
-  document.getElementById("tableProducts").style.display = "table";
   document.getElementById("productosCuerpo").innerHTML = "";
   arrayProductos.forEach((element) => {
     let row = table.insertRow();
@@ -18,12 +16,11 @@ function actualizarProducto(table, arrayProductos) {
 function actualizarMensajes(arrayMensajes) {
   const html = arrayMensajes.map(mensaje => {
     return `<div>
-      <span style="color: blue">${mensaje.email}</span><span style="color: brown"> [${mensaje.fecha}] </span><span style="color: green">${mensaje.mensaje}</span>
+      <span style="color: blue">${mensaje.author.email}</span><span style="color: brown"> [${mensaje.dateAndTime}] </span><span style="color: green">${mensaje.text}</span>
     </div>`
   }).join(" ")
   document.getElementById("mensajesPrincipal").innerHTML = html;
 }
-
 function addProducto() {
   const producto = {
     nombre: document.getElementById("nombre").value,
@@ -46,7 +43,7 @@ function enviarMensaje() {
       avatar: document.getElementById("avatar").value
     },
     dateAndTime: new Date(Date.now()).toLocaleString(),
-    text: document.getElementById("message").value
+    text: document.getElementById("mensaje").value
   };
 
   socket.emit("nuevoMensaje", mensaje);
@@ -65,11 +62,11 @@ socket.on("mensajes", data => {
     {},
     { idAttribute: "email" }
   );
-  const messageSchema = new normalizr.schema.Entity("message", {
+  const messageSchema = new normalizr.schema.Entity("mensaje", {
     author: authorSchema,
   });
-  const messagesSchema = new normalizr.schema.Entity("messages", {
-    messages: [messageSchema],
+  const messagesSchema = new normalizr.schema.Entity("mensajes", {
+    mensajes: [messageSchema],
   });
 
   const deNormalizedData = normalizr.denormalize(data.result,messagesSchema,data.entities);

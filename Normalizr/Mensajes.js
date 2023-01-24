@@ -3,7 +3,7 @@ import { normalize, schema } from "normalizr";
 
 const mensajes = {
     id: 'Desafio-9-Incutto',
-    messages: [
+    mensajes: [
       {
         author: {
           email: 'incuttoezequiel@gmail.com',
@@ -56,12 +56,12 @@ const mensajes = {
   
   const authorSchema = new schema.Entity("author",{},{idAttribute: 'email'});
   
-  const messageSchema = new schema.Entity("message", {
+  const messageSchema = new schema.Entity("mensaje", {
     author: authorSchema,
   });
   
-  const messagesSchema = new schema.Entity("messages", {
-    messages: [messageSchema],
+  const messagesSchema = new schema.Entity("mensajes", {
+    mensajes: [messageSchema],
   });
   
   const messagesNorm = normalize(mensajes, messagesSchema);

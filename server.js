@@ -1,5 +1,5 @@
-import { SqlContenedor } from "./Handlers/Contenedor.js";
-import { optionsSql, optionsSqlite } from "./dbCnf/Confi.js";
+//import { SqlContenedor } from "./Handlers/Contenedor.js";
+//import { optionsSql, optionsSqlite } from "./dbCnf/Confi.js";
 import express from "express";
 import { Server as HttpServer } from "http";
 import { Server as IOServer } from "socket.io";
@@ -22,7 +22,8 @@ function print(obj) {
 app.set("view engine", "ejs");
 
 //DB
-const productosContenedor = new SqlContenedor(optionsSql, "Productos");
+//const productosContenedor = new SqlContenedor(optionsSql, "Productos");
+const productosContenedor =new Contenedor("productos.txt");
 const mensajesContenedor = new Contenedor("mensajes.txt");
 //const mensajesContenedor = new SqlContenedor(optionsSqlite, "Mensajes");
 
@@ -53,21 +54,23 @@ app.get("/productos-test", async (req, res) => {
 });
 
 io.on("connection", async (socket) => {
-    console.log ("Nuevo usuario conectado");
-    const productos = await productosContenedor.getAll();
-    const mensajes = await mensajesContenedor.getAll();
-    socket.emit('productos', productos);
-    socket.emit('mensajes', mensajes);
+  console.log("Nuevo usuario conectado");
+  const productos = getProducts(5);
+  const mensajes = await mensajesContenedor.getAllNormalized();
+  print(mensajes);
+  socket.emit("productos", productos);
+  socket.emit("mensajes", mensajes);
 
     socket.on("nuevoProducto", async (data) => {
-        await productosContenedor.save(data);       
-        io.sockets.emit('productos', await productosContenedor.getAll());
-    })
+      io.sockets.emit("productos", getProducts(productos.length++));
+    });
 
-    socket.on('nuevoMensaje', async (data) => {
+    socket.on("nuevoMensaje", async (data) => {
       await mensajesContenedor.save(data);
-      io.sockets.emit("mensajes", await mensajesContenedor.getAll());
-    })
+      console.log(data);
+      io.sockets.emit("mensajes", await mensajesContenedor.getAllNormalized());
+    });
+
 })
 
 const PORT = 8080;

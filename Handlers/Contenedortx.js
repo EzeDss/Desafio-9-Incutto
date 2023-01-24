@@ -102,7 +102,7 @@ export default class Contenedor {
   #normalizeAll(obj) {
     this.dataToNormalize = {
       id: "Desafio-9-Incutto",
-      messages: obj,
+      mensajes: obj,
     };
     // SCHEMAS
     this.authorSchema = new schema.Entity(
@@ -110,11 +110,11 @@ export default class Contenedor {
       {},
       { idAttribute: "email" }
     );
-    this.messageSchema = new schema.Entity("message", {
+    this.messageSchema = new schema.Entity("mensaje", {
       author: this.authorSchema,
     });
-    this.messagesSchema = new schema.Entity("messages", {
-      messages: [this.messageSchema],
+    this.messagesSchema = new schema.Entity("mensajes", {
+      mensajes: [this.messageSchema],
     });
     return normalize(this.dataToNormalize, this.messagesSchema);
   }
@@ -123,6 +123,7 @@ export default class Contenedor {
     try {
       const data = await promises.readFile(this.nombreArchivo, "utf-8");
       this.arrayObj = JSON.parse(data);
+      console.log(this.arrayObj)
       return this.arrayObj;
     } catch (err) {
       console.log(err);
