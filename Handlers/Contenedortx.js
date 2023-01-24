@@ -1,3 +1,4 @@
+import { copyFileSync } from "fs";
 import { existsSync, readFileSync, writeFileSync, promises } from "fs";
 import { normalize, schema } from "normalizr";
 import util from "util";
@@ -133,6 +134,7 @@ export default class Contenedor {
   async getAllNormalized() {
     try {
       const data = await promises.readFile(this.nombreArchivo, "utf-8");
+      console.log(JSON.parse(data))
       return this.#normalizeAll(JSON.parse(data));
     } catch (err) {
       console.log(err);

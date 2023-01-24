@@ -6,42 +6,42 @@ const mensajes = {
     mensajes: [
       {
         author: {
-          email: 'incuttoezequiel@gmail.com',
-          nombre: 'Ezequiel',
+          email: 'incuttoezequiel858@gmail.com',
+          nombre: 'ezequiel',
           apellido: 'Incutto',
-          edad: '21',
-          alias: 'Eze',
-          avatar: 'http://ezequiel.jpg'
+          edad: '22',
+          alias: 'Ezequiel',
+          avatar: 'www.ezequiel.com'
         },
-        dateAndTime: '19/1/2023, 19:44:03',
-        text: 'sas',
+        fecha: '23/1/2023, 21:00:04',
+        text: 'dsada',
         id: 0
       },
       {
         author: {
-            email: 'incuttoezequiel@gmail.com',
-            nombre: 'Ezequiel',
-            apellido: 'Incutto',
-            edad: '21',
-            alias: 'Eze',
-            avatar: 'http://ezequiel.jpg'
+          email: 'incuttoezequiel858@gmail.com',
+          nombre: 'ezequiel',
+          apellido: 'Incutto',
+          edad: '22',
+          alias: 'Ezequiel',
+          avatar: 'www.ezequiel.com'
         },
-        dateAndTime: '19/1/2023, 19:44:13',
-        text: 'dsaas',
+        fecha: '23/1/2023, 21:03:08',
+        text: 'dsada',
         id: 1
       },
       {
         author: {
-            email: 'incuttoezequiel@gmail.com',
-            nombre: 'Ezequiel',
-            apellido: 'Incutto',
-            edad: '21',
-            alias: 'Eze',
-            avatar: 'http://ezequiel.jpg'
+          email: 'incuttoezequiel858@gmail.com',
+          nombre: 'ezequiel',
+          apellido: 'Incutto',
+          edad: '22',
+          alias: 'Ezequiel',
+          avatar: 'www.ezequiel.com'
         },
-        dateAndTime: '8/1/2023, 19:45:27',
-        text: 'ffaadds',
-        id: 5
+        fecha: '23/1/2023, 21:04:17',
+        text: 'dsada',
+        id: 2
       }
     ]
   }
